@@ -6,6 +6,28 @@
     <description>Update feed for Sideschedule.</description>
     <language>de</language>
     <item>
+      <title>Version 0.9.1</title>
+      <pubDate>Wed, 26 Aug 2026 17:10:00 +0200</pubDate>
+      <sparkle:version>10</sparkle:version>
+      <sparkle:shortVersionString>0.9.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.9.1</h3>
+          <ul>
+            <li>Testphase (14 Tage) und Lizenzierung über Lemon Squeezy</li>
+            <li>Eigenes App-Icon</li>
+            <li>DMG-Download für die manuelle Erstinstallation</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.9.1/SideSchedule-0.9.1.zip"
+        sparkle:edSignature="mPvDobIl7pYbBgO3rObGIyVBWGkrm3+Lh3qjA3RjnOyP+vyPw2g+F+PTELff+YM4/W/rxjlAYyvhJa9Vvbj9Cg=="
+        length="3527107"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.9.0</title>
       <pubDate>Wed, 26 Aug 2026 15:11:00 +0200</pubDate>
       <sparkle:version>9</sparkle:version>
