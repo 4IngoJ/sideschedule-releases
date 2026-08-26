@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Sideschedule</title>
+    <link>https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/appcast.xml</link>
+    <description>Update feed for Sideschedule.</description>
+    <language>de</language>
+    <item>
+      <title>Version 0.9.0</title>
+      <pubDate>Wed, 26 Aug 2026 15:11:00 +0200</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>0.9.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.9.0</h3>
+          <ul>
+            <li>Erster öffentlicher Preview-Build</li>
+            <li>Tageskalender-Sidebar mit Ein-/Ausklapp-Handle</li>
+            <li>Auto-Updates über Sparkle</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.9.0/SideSchedule-0.9.0.zip"
+        sparkle:edSignature="9Cgy8goUh5AGzM06mk37sgocKdJV2xIStlNepSGcU6PFcWWAb+5JlPYBeWEU6jGFKxqm+eDR0/hBxMfK/KagAg=="
+        length="1366585"
+        type="application/octet-stream" />
+    </item>
+  </channel>
+</rss>
