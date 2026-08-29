@@ -6,6 +6,31 @@
     <description>Update feed for Sideschedule.</description>
     <language>de</language>
     <item>
+      <title>Version 0.11.0</title>
+      <pubDate>Sat, 29 Aug 2026 20:16:30 +0200</pubDate>
+      <sparkle:version>12</sparkle:version>
+      <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.11.0</h3>
+          <ul>
+            <li>Beitreten-Icon direkt im Terminblock der Timeline — kein Popover mehr nötig, bei laufenden Terminen farblich hervorgehoben</li>
+            <li>Notizen zu jedem Termin, unabhängig von Uhrzeit oder erkanntem Meeting-Link, direkt in der Termin-Detailansicht</li>
+            <li>Neuer Notiz-Modus: Klick auf das Notiz-Icon (oder ⌥-Klick auf den Terminblock) verwandelt die ausgeklappte Sidebar in eine volle Notizansicht, die vom Bildschirmrand hereingleitet</li>
+            <li>Notizen werden automatisch gespeichert, ohne Speichern-Button</li>
+            <li>Zentrale, durchsuchbare Notizübersicht in den Einstellungen</li>
+            <li>Optional: Notizen zusätzlich in die Terminbeschreibung im Apple Kalender schreiben (standardmäßig aus)</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.11.0/SideSchedule-0.11.0.zip"
+        sparkle:edSignature="dw7n4uO9X3drym/b9/9Ogw1XtQJ9D+vmQV28/eFDz3Ic7cIV5eSAtzINJ2RS1rrOGPrfvWsDpstDvu68gyBvDg=="
+        length="1667424"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.10.0</title>
       <pubDate>Fri, 28 Aug 2026 18:03:47 +0200</pubDate>
       <sparkle:version>11</sparkle:version>
