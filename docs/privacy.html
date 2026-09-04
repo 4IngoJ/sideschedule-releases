@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — SideSchedule</title>
+<meta name="description" content="Privacy policy for SideSchedule, the macOS day-calendar sidebar.">
+<link rel="icon" type="image/png" href="assets/app-icon.png">
+<style>
+  :root {
+    --paper: #FAFAF8; --band: #F0EEE9; --ink: #141413;
+    --muted: #6B6B68; --line: #E3E0DA; --white: #FFFFFF;
+    --serif: "New York", "Charter", "Georgia", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  nav { border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; height: 60px; }
+  .wordmark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; text-decoration: none; color: var(--ink); }
+  .wordmark img { width: 28px; height: 28px; border-radius: 7px; }
+  main { padding: 72px 0 96px; }
+  h1 { font-family: var(--serif); font-size: 40px; letter-spacing: -.02em; font-weight: 600; margin-bottom: 8px; }
+  .updated { color: var(--muted); font-size: 14px; margin-bottom: 48px; }
+  h2 { font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: -.01em; margin: 40px 0 12px; }
+  p, li { font-size: 16px; color: #3d3d3a; margin-bottom: 12px; }
+  ul { padding-left: 22px; margin-bottom: 16px; }
+  a { color: var(--ink); }
+  footer { border-top: 1px solid var(--line); padding: 32px 0; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="wordmark" href="index.html"><img src="assets/app-icon.png" alt="">SideSchedule</a></div></nav>
+<main class="wrap">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 4 September 2026</p>
+
+  <p>SideSchedule is a macOS app made by Ingo Jurz, Vienna, Austria. This page explains what data the app touches, what leaves your Mac, and what never does.</p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li>Your calendar events and notes stay on your Mac. They are never uploaded anywhere.</li>
+    <li>There is no analytics, no tracking, no crash-reporting SDK, and no advertising.</li>
+    <li>The only network calls the app makes are: license validation (Lemon Squeezy) and update checks (Sparkle, via GitHub).</li>
+  </ul>
+
+  <h2>Calendar data</h2>
+  <p>SideSchedule reads your calendars through Apple's EventKit framework to display your day. If you create, rename, reschedule, or delete events, those changes are written back to Apple Calendar. Event notes you type in SideSchedule are stored locally on your Mac (and optionally mirrored as Markdown files to a folder you choose, or into the event description in Apple Calendar if you enable that option). None of this data is transmitted to us or to any third party.</p>
+
+  <h2>Accessibility access</h2>
+  <p>If you enable "Keep Windows Off Sidebar", SideSchedule uses the macOS Accessibility API to observe and reposition windows of the frontmost app so they don't slide under the sidebar. This happens entirely on your Mac. No window titles, app names, or usage data are collected or transmitted.</p>
+
+  <h2>License activation and validation</h2>
+  <p>When you enter a license key, SideSchedule contacts the Lemon Squeezy API (api.lemonsqueezy.com) over HTTPS to activate and periodically validate it. This request includes your license key and your Mac's hostname (used as the activation label so you can recognise the device in your Lemon Squeezy customer portal). Your license key is stored in the macOS Keychain, not in plain-text preferences.</p>
+
+  <h2>Updates</h2>
+  <p>SideSchedule checks for updates via the Sparkle framework, which fetches an appcast file hosted on GitHub (github.com). GitHub may log your IP address as part of serving that file, subject to GitHub's own privacy policy. Update downloads are signed and verified with an EdDSA signature before installation.</p>
+
+  <h2>Diagnostics reports</h2>
+  <p>You can manually send a diagnostics report by email from the menu bar or Preferences. This is always user-initiated: the app collects recent app logs, crash reports, and basic system information into a draft email that you can review — and edit or delete — before anything is sent. These files may contain local file paths and your Mac's hostname. Nothing is ever sent automatically.</p>
+
+  <h2>What we never collect</h2>
+  <ul>
+    <li>No account or sign-up of any kind</li>
+    <li>No analytics or usage statistics</li>
+    <li>No advertising identifiers</li>
+    <li>No crash data unless you choose to email it yourself</li>
+    <li>No calendar contents, notes, or window information</li>
+  </ul>
+
+  <h2>Payment</h2>
+  <p>Purchases are processed by Lemon Squeezy as merchant of record. Your payment details are handled entirely by Lemon Squeezy and never touch this app or our systems. See <a href="https://www.lemonsqueezy.com/privacy">Lemon Squeezy's privacy policy</a>.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about privacy: <a href="mailto:hello@ingojurz.com">hello@ingojurz.com</a></p>
+</main>
+<footer><div class="wrap">SideSchedule — a macOS day-calendar sidebar</div></footer>
+</body>
+</html>
