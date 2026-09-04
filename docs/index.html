@@ -3,14 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SideSchedule — Your day, pinned to the edge of your screen</title>
-<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else is allowed to sit on top of it. Free for 14 days, then €12.99 once.">
+<title>SideSchedule — A day-calendar sidebar for macOS</title>
+<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it. Free for 14 days, €12.99 once.">
+<link rel="canonical" href="https://4ingoj.github.io/sideschedule-releases/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SideSchedule — Your day, pinned to the edge of your screen">
-<meta property="og:description" content="A macOS day-calendar sidebar that reserves screen space instead of overlaying it. Free for 14 days, then €12.99 once.">
-<meta property="og:image" content="assets/demo-poster.png">
+<meta property="og:url" content="https://4ingoj.github.io/sideschedule-releases/">
+<meta property="og:title" content="SideSchedule — A day-calendar sidebar for macOS">
+<meta property="og:description" content="Reserves a strip of screen the way the Dock does. Free for 14 days, €12.99 once.">
+<meta property="og:image" content="https://4ingoj.github.io/sideschedule-releases/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://4ingoj.github.io/sideschedule-releases/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/app-icon.png">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   @font-face {
     font-family: 'Inter';
@@ -273,6 +282,28 @@
   .compare-sub { max-width: 780px; margin: 56px auto 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 700px) { .compare-sub { grid-template-columns: 1fr; } }
 
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 12px; margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 20px 24px; cursor: pointer;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.005em;
+    list-style: none; display: flex; align-items: center; justify-content: space-between;
+  }
+  .faq-item summary::after {
+    content: '+'; font-size: 20px; font-weight: 400; color: var(--muted);
+    transition: transform .2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item p {
+    padding: 0 24px 20px; font-size: 15px; color: var(--muted);
+  }
+
   /* ---------- Footer ---------- */
   footer { border-top: 1px solid var(--line); padding: 48px 0; }
   footer .wrap {
@@ -286,6 +317,29 @@
   footer .links a { color: var(--muted); text-decoration: none; font-size: 14px; }
   footer .links a:hover { color: var(--ink); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SideSchedule",
+  "operatingSystem": "macOS 13+",
+  "applicationCategory": "ProductivityApplication",
+  "description": "A macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it.",
+  "url": "https://4ingoj.github.io/sideschedule-releases/",
+  "downloadUrl": "https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg",
+  "softwareVersion": "0.13.1",
+  "author": {
+    "@type": "Person",
+    "name": "Ingo Jurz"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "12.99",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -531,6 +585,56 @@
         <h3>Always in view</h3>
         <p>No click needed. The next few hours are just there when you glance over.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Questions</h2>
+      <p>The ones that actually come up.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Does it work with my calendar?</summary>
+        <p>SideSchedule reads from Apple Calendar (EventKit), so anything Apple Calendar can see — iCloud, Google, Exchange, CalDAV — shows up in the sidebar. No extra sync, no account.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does it need Accessibility access?</summary>
+        <p>That's the only way macOS lets an app keep other windows from sliding under the sidebar. It's the same permission the Dock uses. SideSchedule never reads window content — it only repositions frames.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens after the 14-day trial?</summary>
+        <p>Nothing dramatic. The sidebar keeps working, but you lose the ability to create or edit events and notes. Buy a license and everything comes back — no reinstall needed.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is my data sent anywhere?</summary>
+        <p>No. Your calendar events and notes stay on your Mac. The only network calls are license validation (Lemon Squeezy) and update checks (GitHub). There's no analytics, no tracking, no telemetry.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I get a refund?</summary>
+        <p>Lemon Squeezy handles payments as merchant of record. If something's genuinely broken, reach out and we'll figure it out — but the 14-day trial exists so you can be sure before you pay.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does it work on multiple monitors?</summary>
+        <p>Yes. You pick which display the sidebar lives on, and it follows that screen. If you unplug the monitor, it moves to the next one automatically.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="ink" id="cta-final">
+  <div class="wrap" style="text-align:center;">
+    <h2 style="font-family:var(--sans); font-size:clamp(28px,4.4vw,36px); font-weight:600; letter-spacing:-0.015em; margin-bottom:16px;">
+      Your calendar, finally winning.
+    </h2>
+    <p style="color:rgba(250,250,248,.6); font-size:17px; max-width:480px; margin:0 auto 32px;">
+      Free for 14 days. No account, no credit card, no guilt-trip emails.
+    </p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download for macOS</a>
+      <a class="btn btn-outline-light" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
     </div>
   </div>
 </section>
