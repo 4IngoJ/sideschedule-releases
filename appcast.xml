@@ -6,6 +6,31 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.13.2</title>
+      <pubDate>Fri, 04 Sep 2026 22:43:28 +0200</pubDate>
+      <sparkle:version>16</sparkle:version>
+      <sparkle:shortVersionString>0.13.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.13.2</h3>
+          <ul>
+            <li>Fixed: a note on a recurring event could detach and show as "Event deleted" after the source calendar re-synced (iCloud, Google, Exchange)</li>
+            <li>Fixed: a stale Escape-key handler could linger past a popover's own lifetime instead of being removed with it</li>
+            <li>Fixed: the month grid's open/closed state is now remembered across relaunches instead of always reopening</li>
+            <li>Fixed: the in-app buy button showed an old €4.99 price; the license now correctly reads €12.99, matching checkout</li>
+            <li>New: `brew install --cask 4ingoj/tap/sideschedule` now works — the Homebrew tap is live</li>
+            <li>Legal: published privacy policy and Impressum, linked from the app's About tab and the site footer</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.13.2/SideSchedule-0.13.2.zip"
+        sparkle:edSignature="44qVgJY81PkPDc8d9o2ANeru82iVe2FZjaLdhUk7z8Vy7BfTVHW2kQbwk5K9v/r34yDPpvmOieYHOvZFsxkdDQ=="
+        length="2687842"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.13.1</title>
       <pubDate>Fri, 04 Sep 2026 13:53:26 +0200</pubDate>
       <sparkle:version>15</sparkle:version>
