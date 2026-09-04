@@ -247,59 +247,42 @@
     max-width: 560px; margin-left: auto; margin-right: auto;
   }
 
-  /* ---------- How it works: vertical flip cards ---------- */
+  /* ---------- How it works: steps with side illustrations ---------- */
   .how-steps {
-    max-width: 560px; margin: 0 auto;
+    max-width: 960px; margin: 0 auto;
     display: flex; flex-direction: column; gap: 16px;
-    perspective: 1400px;
   }
   .how-step {
-    position: relative;
-    min-height: 250px;
-    transform-style: preserve-3d;
-    transition: transform .6s cubic-bezier(.35, .1, .2, 1);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    align-items: stretch;
   }
-  .how-step.tall { min-height: 340px; }
-  .how-step:hover,
-  .how-step:focus-within {
-    transform: rotateY(180deg);
-  }
-  .how-face {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: center;
-    border-radius: var(--radius); padding: 28px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .how-front {
+  @media (max-width: 760px) { .how-step { grid-template-columns: 1fr; } }
+  .how-text {
     background: var(--white); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .how-back {
-    background: var(--ink); color: var(--paper);
-    border: 1px solid var(--ink);
-    transform: rotateY(180deg);
-    align-items: center; text-align: center; gap: 14px;
-  }
-  .how-back .back-caption {
-    font-size: 13px; color: rgba(250,250,248,.6);
-    max-width: 340px;
-  }
-  .how-step .how-num {
+  .how-text .how-num {
     display: inline-flex; align-items: center; justify-content: center;
     width: 30px; height: 30px; border-radius: 50%;
     background: var(--ink); color: var(--paper);
     font-size: 13px; font-weight: 700; margin-bottom: 16px;
   }
-  .how-step h3 { font-size: 16px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; }
-  .how-step p { font-size: 14.5px; color: var(--muted); }
-  .how-step p strong { color: var(--ink); }
-  .how-step .flip-hint {
-    position: absolute; top: 18px; right: 20px;
-    color: var(--muted); opacity: .55;
+  .how-text h3 { font-size: 16px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; }
+  .how-text p { font-size: 14.5px; color: var(--muted); }
+  .how-text p strong { color: var(--ink); }
+  .how-illus {
+    background: var(--ink); color: var(--paper);
+    border-radius: var(--radius); padding: 28px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; text-align: center;
   }
-  .how-step .flip-hint svg { width: 15px; height: 15px; display: block; }
+  .how-illus .illus-caption {
+    font-size: 13px; color: rgba(250,250,248,.6);
+    max-width: 340px; margin: 0;
+  }
 
-  /* Back-face illustrations */
+  /* Illustrations */
   .illus-screen {
     display: flex; width: 100%; max-width: 300px; height: 104px;
     border: 1px solid rgba(250,250,248,.22); border-radius: 8px;
@@ -343,9 +326,6 @@
   }
   .illus-note .fm { color: #9BB8FF; }
   .illus-note .fm-key { color: #7DA2FF; }
-  @media (prefers-reduced-motion: reduce) {
-    .how-step { transition: none; }
-  }
 
   /* ---------- Inline links ---------- */
   .step a, .install-note a {
@@ -476,6 +456,18 @@
   footer .links { display: flex; gap: 24px; flex-wrap: wrap; }
   footer .links a { color: var(--muted); text-decoration: none; font-size: 14px; }
   footer .links a:hover { color: var(--ink); }
+
+  /* ---------- Scroll reveal (only hidden once JS confirms it can animate) ---------- */
+  html.reveal-on .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity .6s cubic-bezier(.2, .6, .2, 1), transform .6s cubic-bezier(.2, .6, .2, 1);
+    transition-delay: var(--reveal-delay, 0s);
+    will-change: opacity, transform;
+  }
+  html.reveal-on .reveal.revealed { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html.reveal-on .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -558,7 +550,7 @@
       <h2 data-i18n="demo.h2">See it in action</h2>
       <p data-i18n="demo.sub">Faster to watch than to read about.</p>
     </div>
-    <div class="video-frame">
+    <div class="video-frame reveal">
       <video src="assets/demo-web.mp4" poster="assets/demo-poster.png" autoplay muted loop playsinline controls aria-label="SideSchedule sidebar showing a real day of calendar events"></video>
     </div>
   </div>
@@ -570,7 +562,7 @@
       <h2 data-i18n="features.h2">The short version</h2>
       <p data-i18n="features.sub">What you actually get.</p>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid reveal-stagger">
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></div>
         <h3 data-i18n="f1.h3">Notes that land in your vault</h3>
@@ -578,62 +570,62 @@
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M19 4v16"/><path d="M19 12H3"/></svg></div>
-        <h3>Claims its corner</h3>
-        <p>Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top. Part of the desktop, same as the Dock.</p>
+        <h3 data-i18n="f2.h3">Claims its corner</h3>
+        <p data-i18n="f2.p">Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top. Part of the desktop, same as the Dock.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/><circle cx="18.5" cy="9" r=".5" fill="currentColor"/></svg></div>
-        <h3>Shrinks away, stays useful</h3>
-        <p>Auto-hide collapses it to a thin sliver that still shows a live meeting&rsquo;s join button and countdown. Never gone, always doing something — always in view without a click.</p>
+        <h3 data-i18n="f3.h3">Shrinks away, stays useful</h3>
+        <p data-i18n="f3.p">Auto-hide collapses it to a thin sliver that still shows a live meeting&rsquo;s join button and countdown. Never gone, always doing something — always in view without a click.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-        <h3>One-tap meeting join</h3>
-        <p>Detects Zoom, Meet, Teams, Webex, and FaceTime links in the location, URL, or notes field. Rewrites to the native app scheme when installed — no browser detour.</p>
+        <h3 data-i18n="f4.h3">One-tap meeting join</h3>
+        <p data-i18n="f4.p">Detects Zoom, Meet, Teams, Webex, and FaceTime links in the location, URL, or notes field. Rewrites to the native app scheme when installed — no browser detour.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
-        <h3>It&rsquo;s your actual calendar</h3>
-        <p>Reads, creates, renames, and deletes real events via EventKit. Drag to reschedule. Drop a file or text selection to time-block. All-day events get their own row.</p>
+        <h3 data-i18n="f5.h3">It&rsquo;s your actual calendar</h3>
+        <p data-i18n="f5.p">Reads, creates, renames, and deletes real events via EventKit. Drag to reschedule. Drop a file or text selection to time-block. All-day events get their own row.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-        <h3>Always knows what&rsquo;s next</h3>
-        <p>Next free 30 minutes: 14:30 — right in the header, so you don&rsquo;t have to scan the day to find a gap.</p>
+        <h3 data-i18n="f6.h3">Always knows what&rsquo;s next</h3>
+        <p data-i18n="f6.p">Next free 30 minutes: 14:30 — right in the header, so you don&rsquo;t have to scan the day to find a gap.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h3>Speaks your Mac&rsquo;s language</h3>
-        <p>German, English, French, Spanish, Italian, Portuguese, automatically.</p>
+        <h3 data-i18n="f7.h3">Speaks your Mac&rsquo;s language</h3>
+        <p data-i18n="f7.p">German, English, French, Spanish, Italian, Portuguese, automatically.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
-        <h3>Wherever your setup lives</h3>
-        <p>Left or right, whichever display — pick the screen in Preferences. Unplug a monitor and it follows to the next one.</p>
+        <h3 data-i18n="f8.h3">Wherever your setup lives</h3>
+        <p data-i18n="f8.p">Left or right, whichever display — pick the screen in Preferences. Unplug a monitor and it follows to the next one.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <h3>Local-first, no account</h3>
-        <p>Calendar events and notes stay on your Mac. The only network calls are license validation and update checks. No analytics, no tracking, no telemetry.</p>
+        <h3 data-i18n="f9.h3">Local-first, no account</h3>
+        <p data-i18n="f9.p">Calendar events and notes stay on your Mac. The only network calls are license validation and update checks. No analytics, no tracking, no telemetry.</p>
       </div>
     </div>
 
     <div class="section-head" style="margin-top: 88px;">
-      <h2>How it compares</h2>
-      <p>Where SideSchedule actually differs.</p>
+      <h2 data-i18n="compare.h2">How it compares</h2>
+      <p data-i18n="compare.sub">Where SideSchedule actually differs.</p>
     </div>
-    <p style="text-align:center; max-width:640px; margin:-32px auto 40px; color:var(--muted); font-size:16px;">
+    <p style="text-align:center; max-width:640px; margin:-32px auto 40px; color:var(--muted); font-size:16px;" data-i18n="compare.lead">
       Most calendar apps show you your day, then get out of the way. SideSchedule stays — and it&rsquo;s the only one that turns a meeting into a note in your own files while the meeting is happening.
     </p>
-    <div class="table-scroll">
+    <div class="table-scroll reveal">
     <table class="compare-table">
       <thead>
         <tr>
           <th>App</th>
-          <th>Price</th>
-          <th>Reserves space</th>
-          <th>Notes to your files</th>
-          <th>Meeting join</th>
+          <th data-i18n="cmp.price">Price</th>
+          <th data-i18n="cmp.reserves">Reserves space</th>
+          <th data-i18n="cmp.notes">Notes to your files</th>
+          <th data-i18n="cmp.join">Meeting join</th>
         </tr>
       </thead>
       <tbody>
@@ -689,51 +681,50 @@
       </tbody>
     </table>
     </div>
-    <p class="compare-note">Prices and features as published by each app, checked September 2026. Always confirm on the maker&rsquo;s own site before buying.</p>
+    <p class="compare-note" data-i18n="compare.note">Prices and features as published by each app, checked September 2026. Always confirm on the maker&rsquo;s own site before buying.</p>
   </div>
 </section>
 
 <section class="ink" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <h2>The money bit</h2>
-      <p>Free to try. Cheap to keep, forever.</p>
+      <h2 data-i18n="pricing.h2">The money bit</h2>
+      <p data-i18n="pricing.sub">Free to try. Cheap to keep, forever.</p>
     </div>
-    <div class="pricing-grid">
+    <div class="pricing-grid reveal-stagger">
       <div class="price-card">
-        <div class="tier">Trial</div>
-        <div class="amount">Free for 14 days</div>
-        <p>Everything unlocked. No account, no credit card, and no countdown emails guilt-tripping you into buying.</p>
-        <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download the trial</a>
+        <div class="tier" data-i18n="pricing.trialTier">Trial</div>
+        <div class="amount" data-i18n="pricing.trialAmount">Free for 14 days</div>
+        <p data-i18n="pricing.trialP">Everything unlocked. No account, no credit card, and no countdown emails guilt-tripping you into buying.</p>
+        <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg" data-i18n="pricing.trialCta">Download the trial</a>
       </div>
       <div class="price-card highlight">
-        <div class="tier">License</div>
-        <div class="amount">€12.99 once</div>
-        <p>Pay once, keep every update after. I won&rsquo;t turn this into a subscription later. That trick is played out anyway.</p>
-        <a class="btn btn-primary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
+        <div class="tier" data-i18n="pricing.licenseTier">License</div>
+        <div class="amount" data-i18n="pricing.licenseAmount">€12.99 once</div>
+        <p data-i18n="pricing.licenseP">Pay once, keep every update after. I won&rsquo;t turn this into a subscription later. That trick is played out anyway.</p>
+        <a class="btn btn-primary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5" data-i18n="cta.buy">Buy license — €12.99</a>
       </div>
     </div>
-    <p class="merchant-note">Lemon Squeezy handles the payment — they&rsquo;re the merchant of record, so there&rsquo;s no extra account and no surprise line item you won&rsquo;t recognise later.</p>
+    <p class="merchant-note" data-i18n="pricing.merchant">Lemon Squeezy handles the payment — they&rsquo;re the merchant of record, so there&rsquo;s no extra account and no surprise line item you won&rsquo;t recognise later.</p>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
     <div class="section-head">
-      <h2>How it works</h2>
-      <p>Always there, so you never have to switch to it.</p>
+      <h2 data-i18n="how.h2">How it works</h2>
+      <p data-i18n="how.sub">Always there, so you never have to switch to it.</p>
     </div>
-    <div class="how-steps">
-      <div class="how-step" tabindex="0">
-        <div class="how-face how-front">
-          <span class="flip-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+    <div class="how-steps reveal-stagger">
+      <div class="how-step">
+        <div class="how-text">
           <span class="how-num">1</span>
-          <h3>It reserves the space</h3>
-          <p>Apple never gave regular apps a way to claim screen space like the Dock can. So SideSchedule fakes it: any window that tries to slide under the sidebar gets nudged back out. You&rsquo;ll never notice it happening.</p>
+          <h3 data-i18n="how1.h3">It reserves the space</h3>
+          <p data-i18n="how1.p">Apple never gave regular apps a way to claim screen space like the Dock can. So SideSchedule fakes it: any window that tries to slide under the sidebar gets nudged back out. You&rsquo;ll never notice it happening.</p>
         </div>
-        <div class="how-face how-back" aria-hidden="true">
+        <div class="how-illus">
           <div class="illus-screen">
-            <div class="win-area">Your windows live here</div>
+            <div class="win-area" data-i18n="how1.win">Your windows live here</div>
             <div class="sidebar-strip">
               <div class="ev"></div>
               <div class="ev live"></div>
@@ -747,17 +738,16 @@
             <span class="illus-chip">Menu bar</span>
             <span class="illus-chip app">SideSchedule</span>
           </div>
-          <p class="back-caption">Other windows physically can&rsquo;t cover the strip — the space is reserved, not floated on top.</p>
+          <p class="illus-caption" data-i18n="how1.cap">Other windows physically can&rsquo;t cover the strip — the space is reserved, not floated on top.</p>
         </div>
       </div>
-      <div class="how-step" tabindex="0">
-        <div class="how-face how-front">
-          <span class="flip-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+      <div class="how-step">
+        <div class="how-text">
           <span class="how-num">2</span>
-          <h3>One permission does it</h3>
-          <p><strong>Accessibility</strong>, under System Settings &rarr; Privacy &amp; Security. It&rsquo;s the only thing SideSchedule asks for besides Calendar access — and the reason the whole trick works.</p>
+          <h3 data-i18n="how2.h3">One permission does it</h3>
+          <p data-i18n="how2.p"><strong>Accessibility</strong>, under System Settings &rarr; Privacy &amp; Security. It&rsquo;s the only thing SideSchedule asks for besides Calendar access — and the reason the whole trick works.</p>
         </div>
-        <div class="how-face how-back" aria-hidden="true">
+        <div class="how-illus">
           <div class="illus-shield">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="M9 11.5l2 2 4-4.5"/></svg>
           </div>
@@ -766,17 +756,16 @@
             <span class="illus-chip">Privacy &amp; Security</span>
             <span class="illus-chip app">Accessibility</span>
           </div>
-          <p class="back-caption">One toggle, one time. No background daemons, no kernel extensions — just the same permission the Dock relies on.</p>
+          <p class="illus-caption" data-i18n="how2.cap">One toggle, one time. No background daemons and no kernel extensions.</p>
         </div>
       </div>
-      <div class="how-step tall" tabindex="0">
-        <div class="how-face how-front">
-          <span class="flip-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+      <div class="how-step">
+        <div class="how-text">
           <span class="how-num">3</span>
-          <h3>Notes become files</h3>
-          <p>Because the sidebar is always there, it&rsquo;s the one place you can type notes without leaving the call. Every note saves as a standalone .md file into a folder you pick.</p>
+          <h3 data-i18n="how3.h3">Notes become files</h3>
+          <p data-i18n="how3.p">Because the sidebar is always there, it&rsquo;s the one place you can type notes without leaving the call. Every note saves as a standalone .md file into a folder you pick.</p>
         </div>
-        <div class="how-face how-back" aria-hidden="true">
+        <div class="how-illus">
           <div class="illus-note">
 <pre><span class="fm">---</span>
 <span class="fm-key">title:</span>    "Weekly sync"
@@ -789,7 +778,7 @@
 
 Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
           </div>
-          <p class="back-caption">Plain Markdown with YAML frontmatter — no glue code needed.</p>
+          <p class="illus-caption" data-i18n="how3.cap">Plain Markdown with YAML frontmatter — no glue code needed.</p>
         </div>
       </div>
     </div>
@@ -799,55 +788,55 @@ Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
 <section class="band" id="install">
   <div class="wrap">
     <div class="section-head">
-      <h2>First launch</h2>
-      <p>Two minutes, no App Store.</p>
+      <h2 data-i18n="install.h2">First launch</h2>
+      <p data-i18n="install.sub">Two minutes, no App Store.</p>
     </div>
-    <div class="steps" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="steps reveal-stagger" style="grid-template-columns: repeat(2, 1fr);">
       <div class="step">
         <span class="num">01</span>
-        <h3>Download &amp; drag to Applications</h3>
-        <p>Grab the <a href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">latest release</a> from GitHub. Open the disk image, drag SideSchedule into Applications, done.</p>
+        <h3 data-i18n="install1.h3">Download &amp; drag to Applications</h3>
+        <p data-i18n="install1.p">Grab the <a href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">latest release</a> from GitHub. Open the disk image, drag SideSchedule into Applications, done.</p>
       </div>
       <div class="step">
         <span class="num">02</span>
-        <h3>Launch and allow access</h3>
-        <p>Say yes when it asks for Calendar and Accessibility access. That one click is what makes the whole reserved-space trick work.</p>
+        <h3 data-i18n="install2.h3">Launch and allow access</h3>
+        <p data-i18n="install2.p">Say yes when it asks for Calendar and Accessibility access. That one click is what makes the whole reserved-space trick work.</p>
       </div>
     </div>
-    <p class="install-note">Signed with a Developer ID and notarized by Apple — Gatekeeper lets it straight through, no right-click dance needed.</p>
+    <p class="install-note" data-i18n="install.note">Signed with a Developer ID and notarized by Apple — Gatekeeper lets it straight through, no right-click dance needed.</p>
   </div>
 </section>
 
 <section class="band" id="faq">
   <div class="wrap">
     <div class="section-head">
-      <h2>Questions</h2>
-      <p>The ones that actually come up.</p>
+      <h2 data-i18n="faq.h2">Questions</h2>
+      <p data-i18n="faq.sub">The ones that actually come up.</p>
     </div>
-    <div class="faq-list">
+    <div class="faq-list reveal-stagger">
       <details class="faq-item">
-        <summary>Does it work with my calendar?</summary>
-        <p>SideSchedule reads from Apple Calendar (EventKit), so anything Apple Calendar can see — iCloud, Google, Exchange, CalDAV — shows up in the sidebar. No extra sync, no account.</p>
+        <summary data-i18n="faq1.q">Does it work with my calendar?</summary>
+        <p data-i18n="faq1.a">SideSchedule reads from Apple Calendar (EventKit), so anything Apple Calendar can see — iCloud, Google, Exchange, CalDAV — shows up in the sidebar. No extra sync, no account.</p>
       </details>
       <details class="faq-item">
-        <summary>Why does it need Accessibility access?</summary>
-        <p>That's the only way macOS lets an app keep other windows from sliding under the sidebar. It's the same permission the Dock uses. SideSchedule never reads window content — it only repositions frames.</p>
+        <summary data-i18n="faq2.q">Why does it need Accessibility access?</summary>
+        <p data-i18n="faq2.a">That's the only way macOS lets an app keep other windows from sliding under the sidebar. The Dock gets its reserved strip from the system itself; a regular app has no such API, so Accessibility is the only route left. SideSchedule never reads window content — it only repositions frames.</p>
       </details>
       <details class="faq-item">
-        <summary>What happens after the 14-day trial?</summary>
-        <p>Nothing dramatic. The sidebar keeps working, but you lose the ability to create or edit events and notes. Buy a license and everything comes back — no reinstall needed.</p>
+        <summary data-i18n="faq3.q">What happens after the 14-day trial?</summary>
+        <p data-i18n="faq3.a">The sidebar stops appearing and the app opens to the activation window instead. Nothing is deleted: your notes, settings and exported .md files all stay exactly where they are, and the sidebar returns the moment you enter a key. No reinstall needed.</p>
       </details>
       <details class="faq-item">
-        <summary>Is my data sent anywhere?</summary>
-        <p>No. Your calendar events and notes stay on your Mac. The only network calls are license validation (Lemon Squeezy) and update checks (GitHub). There's no analytics, no tracking, no telemetry.</p>
+        <summary data-i18n="faq4.q">Is my data sent anywhere?</summary>
+        <p data-i18n="faq4.a">No. Your calendar events and notes stay on your Mac. The only network calls are license validation (Lemon Squeezy) and update checks (GitHub). There's no analytics, no tracking, no telemetry.</p>
       </details>
       <details class="faq-item">
-        <summary>Can I get a refund?</summary>
-        <p>Lemon Squeezy handles payments as merchant of record. If something's genuinely broken, reach out and we'll figure it out — but the 14-day trial exists so you can be sure before you pay.</p>
+        <summary data-i18n="faq5.q">Can I get a refund?</summary>
+        <p data-i18n="faq5.a">Lemon Squeezy handles payments as merchant of record. If something's genuinely broken, reach out and we'll figure it out — but the 14-day trial exists so you can be sure before you pay.</p>
       </details>
       <details class="faq-item">
-        <summary>Does it work on multiple monitors?</summary>
-        <p>Yes. You pick which display the sidebar lives on, and it follows that screen. If you unplug the monitor, it moves to the next one automatically.</p>
+        <summary data-i18n="faq6.q">Does it work on multiple monitors?</summary>
+        <p data-i18n="faq6.a">Yes. You pick which display the sidebar lives on, and it follows that screen. If you unplug the monitor, it moves to the next one automatically.</p>
       </details>
     </div>
   </div>
@@ -855,15 +844,15 @@ Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
 
 <section class="ink" id="cta-final">
   <div class="wrap" style="text-align:center;">
-    <h2 style="font-family:var(--sans); font-size:clamp(28px,4.4vw,36px); font-weight:600; letter-spacing:-0.015em; margin-bottom:16px;">
+    <h2 style="font-family:var(--sans); font-size:clamp(28px,4.4vw,36px); font-weight:600; letter-spacing:-0.015em; margin-bottom:16px;" data-i18n="final.h2">
       Your calendar, finally winning.
     </h2>
-    <p style="color:rgba(250,250,248,.6); font-size:17px; max-width:480px; margin:0 auto 32px;">
+    <p style="color:rgba(250,250,248,.6); font-size:17px; max-width:480px; margin:0 auto 32px;" data-i18n="final.sub">
       Free for 14 days. No account, no credit card, no guilt-trip emails.
     </p>
     <div class="cta-row" style="justify-content:center;">
-      <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download for macOS</a>
-      <a class="btn btn-outline-light" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
+      <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg" data-i18n="cta.download">Download for macOS</a>
+      <a class="btn btn-outline-light" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5" data-i18n="cta.buy">Buy license — €12.99</a>
     </div>
   </div>
 </section>
@@ -875,15 +864,117 @@ Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
       SideSchedule <span class="ver">v0.13.1</span>
     </div>
     <div class="links">
-      <a href="privacy.html">Privacy</a>
-      <a href="impressum.html">Legal Notice</a>
-      <a href="https://github.com/4IngoJ/sideschedule-releases/releases">Releases</a>
-      <a href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license</a>
+      <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+      <a href="impressum.html" data-i18n="footer.legal">Legal Notice</a>
+      <a href="https://github.com/4IngoJ/sideschedule-releases/releases" data-i18n="footer.releases">Releases</a>
+      <a href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5" data-i18n="footer.buy">Buy license</a>
     </div>
   </div>
 </footer>
 
 <script>
+// Scroll reveal for selected visual blocks
+(function() {
+  const revealItems = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (!revealItems.length) return;
+  document.documentElement.classList.add('reveal-on');
+
+  revealItems.forEach(group => {
+    if (group.classList.contains('reveal-stagger')) {
+      Array.from(group.children).forEach((item, index) => {
+        item.classList.add('reveal');
+        item.style.setProperty('--reveal-delay', Math.min(index * 0.08, 0.4) + 's');
+      });
+    }
+  });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(item => item.classList.add('revealed'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+})();
+
+// Language switcher
+(function() {
+  const switcher = document.getElementById('lang-switcher');
+  const toggle = document.querySelector('.lang-toggle');
+  const menu = document.getElementById('lang-menu');
+  const current = document.getElementById('lang-current');
+  if (!switcher || !toggle || !menu || !current) return;
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'de', label: 'Deutsch' },
+    { code: 'fr', label: 'Français' },
+    { code: 'es', label: 'Español' },
+    { code: 'it', label: 'Italiano' },
+    { code: 'pt', label: 'Português' }
+  ];
+  const translations = {
+    en: {
+      'nav.features':'Features','nav.pricing':'Pricing','nav.install':'Install','nav.faq':'FAQ','nav.changelog':'Changelog','lang.ariaLabel':'Change language',
+      'hero.eyebrow':'macOS 13+ · v0.13.1 · built out of mild spite','hero.h1':'My calendar kept losing to every other window. Not anymore.','hero.sub':'SideSchedule reserves a strip of screen the way the Dock does, so nothing else is allowed to sit on top of it. Built for the fifteen times a day I need to know what’s next without hunting for it.','cta.download':'Download for macOS','cta.buy':'Buy license — €12.99','hero.priceNote':'Free for 14 days, then €12.99 once.','hero.brew':'Prefer Homebrew?',
+      'demo.h2':'See it in action','demo.sub':'Faster to watch than to read about.','features.h2':'The short version','features.sub':'What you actually get.',
+      'f1.h3':'Notes that land in your vault','f1.p':'Type through the call, right next to the invite. Every note mirrors itself as a real .md file with YAML frontmatter — Obsidian-ready. Recurring meetings get per-occurrence notes, so last week’s standup never overwrites this week’s.','f2.h3':'Claims its corner','f2.p':'Every window your front app has open gets pushed out of its lane — not just the one you’re clicking into. The space is reserved, not floated on top. Part of the desktop, same as the Dock.','f3.h3':'Shrinks away, stays useful','f3.p':'Auto-hide collapses it to a thin sliver that still shows a live meeting’s join button and countdown. Never gone, always doing something — always in view without a click.','f4.h3':'One-tap meeting join','f4.p':'Detects Zoom, Meet, Teams, Webex, and FaceTime links in the location, URL, or notes field. Rewrites to the native app scheme when installed — no browser detour.','f5.h3':'It’s your actual calendar','f5.p':'Reads, creates, renames, and deletes real events via EventKit. Drag to reschedule. Drop a file or text selection to time-block. All-day events get their own row.','f6.h3':'Always knows what’s next','f6.p':'Next free 30 minutes: 14:30 — right in the header, so you don’t have to scan the day to find a gap.','f7.h3':'Speaks your Mac’s language','f7.p':'German, English, French, Spanish, Italian, Portuguese, automatically.','f8.h3':'Wherever your setup lives','f8.p':'Left or right, whichever display — pick the screen in Preferences. Unplug a monitor and it follows to the next one.','f9.h3':'Local-first, no account','f9.p':'Calendar events and notes stay on your Mac. The only network calls are license validation and update checks. No analytics, no tracking, no telemetry.',
+      'compare.h2':'How it compares','compare.sub':'Where SideSchedule actually differs.','compare.lead':'Most calendar apps show you your day, then get out of the way. SideSchedule stays — and it’s the only one that turns a meeting into a note in your own files while the meeting is happening.','cmp.price':'Price','cmp.reserves':'Reserves space','cmp.notes':'Notes to your files','cmp.join':'Meeting join','compare.note':'Prices and features as published by each app, checked September 2026. Always confirm on the maker’s own site before buying.',
+      'pricing.h2':'The money bit','pricing.sub':'Free to try. Cheap to keep, forever.','pricing.trialTier':'Trial','pricing.trialAmount':'Free for 14 days','pricing.trialP':'Everything unlocked. No account, no credit card, and no countdown emails guilt-tripping you into buying.','pricing.trialCta':'Download the trial','pricing.licenseTier':'License','pricing.licenseAmount':'€12.99 once','pricing.licenseP':'Pay once, keep every update after. I won’t turn this into a subscription later. That trick is played out anyway.','pricing.merchant':'Lemon Squeezy handles the payment — they’re the merchant of record, so there’s no extra account and no surprise line item you won’t recognise later.',
+      'how.h2':'How it works','how.sub':'Always there, so you never have to switch to it.','how1.h3':'It reserves the space','how1.p':'Apple never gave regular apps a way to claim screen space like the Dock can. So SideSchedule fakes it: any window that tries to slide under the sidebar gets nudged back out. You’ll never notice it happening.','how1.win':'Your windows live here','how1.cap':'Other windows physically can’t cover the strip — the space is reserved, not floated on top.','how2.h3':'One permission does it','how2.p':'Accessibility, under System Settings → Privacy & Security. It’s the only thing SideSchedule asks for besides Calendar access — and the reason the whole trick works.','how2.cap':'One toggle, one time. No background daemons and no kernel extensions.','how3.h3':'Notes become files','how3.p':'Because the sidebar is always there, it’s the one place you can type notes without leaving the call. Every note saves as a standalone .md file into a folder you pick.','how3.cap':'Plain Markdown with YAML frontmatter — no glue code needed.',
+      'install.h2':'First launch','install.sub':'Two minutes, no App Store.','install1.h3':'Download & drag to Applications','install1.p':'Grab the latest release from GitHub. Open the disk image, drag SideSchedule into Applications, done.','install2.h3':'Launch and allow access','install2.p':'Say yes when it asks for Calendar and Accessibility access. That one click is what makes the whole reserved-space trick work.','install.note':'Signed with a Developer ID and notarized by Apple — Gatekeeper lets it straight through, no right-click dance needed.',
+      'faq.h2':'Questions','faq.sub':'The ones that actually come up.','faq1.q':'Does it work with my calendar?','faq1.a':'SideSchedule reads from Apple Calendar (EventKit), so anything Apple Calendar can see — iCloud, Google, Exchange, CalDAV — shows up in the sidebar. No extra sync, no account.','faq2.q':'Why does it need Accessibility access?','faq2.a':'That’s the only way macOS lets an app keep other windows from sliding under the sidebar. The Dock gets its reserved strip from the system itself; a regular app has no such API, so Accessibility is the only route left. SideSchedule never reads window content — it only repositions frames.','faq3.q':'What happens after the 14-day trial?','faq3.a':'The sidebar stops appearing and the app opens to the activation window instead. Nothing is deleted: your notes, settings and exported .md files all stay exactly where they are, and the sidebar returns the moment you enter a key. No reinstall needed.','faq4.q':'Is my data sent anywhere?','faq4.a':'No. Your calendar events and notes stay on your Mac. The only network calls are license validation (Lemon Squeezy) and update checks (GitHub). There’s no analytics, no tracking, no telemetry.','faq5.q':'Can I get a refund?','faq5.a':'Lemon Squeezy handles payments as merchant of record. If something’s genuinely broken, reach out and we’ll figure it out — but the 14-day trial exists so you can be sure before you pay.','faq6.q':'Does it work on multiple monitors?','faq6.a':'Yes. You pick which display the sidebar lives on, and it follows that screen. If you unplug the monitor, it moves to the next one automatically.',
+      'final.h2':'Your calendar, finally winning.','final.sub':'Free for 14 days. No account, no credit card, no guilt-trip emails.','footer.privacy':'Privacy','footer.legal':'Legal Notice','footer.releases':'Releases','footer.buy':'Buy license'
+    },
+    de: {
+      'nav.features':'Funktionen','nav.pricing':'Preis','nav.install':'Installation','nav.faq':'FAQ','nav.changelog':'Änderungen','lang.ariaLabel':'Sprache ändern','hero.eyebrow':'macOS 13+ · v0.13.1 · aus milder Trotzreaktion gebaut','hero.h1':'Mein Kalender verlor ständig gegen jedes andere Fenster. Nicht mehr.','hero.sub':'SideSchedule reserviert einen Bildschirmstreifen wie das Dock, sodass nichts anderes darüber liegen darf. Für die fünfzehn Momente am Tag, in denen du wissen musst, was als Nächstes kommt — ohne danach zu suchen.','cta.download':'Für macOS laden','cta.buy':'Lizenz kaufen — 12,99 €','hero.priceNote':'14 Tage kostenlos, danach einmalig 12,99 €.','hero.brew':'Lieber Homebrew?','demo.h2':'In Aktion sehen','demo.sub':'Schneller angesehen als erklärt.','features.h2':'Die Kurzfassung','features.sub':'Das bekommst du tatsächlich.','f1.h3':'Notizen landen in deinem Vault','f1.p':'Schreibe während des Gesprächs direkt neben der Einladung. Jede Notiz wird zu einer echten .md-Datei mit YAML-Frontmatter — bereit für Obsidian. Wiederkehrende Termine erhalten eigene Notizen.','f2.h3':'Reserviert seinen Platz','f2.p':'Jedes Fenster wird aus seiner Spur geschoben — nicht nur das aktive. Der Platz ist reserviert, nicht darübergelegt. Teil des Desktops, genau wie das Dock.','f3.h3':'Verschwindet, bleibt nützlich','f3.p':'Auto-Hide klappt die Leiste zu einem schmalen Streifen ein, der weiterhin den Beitreten-Button und Countdown zeigt.','f4.h3':'Meetings mit einem Klick beitreten','f4.p':'Erkennt Zoom-, Meet-, Teams-, Webex- und FaceTime-Links und öffnet bei installierter App direkt das native Programm.','f5.h3':'Dein echter Kalender','f5.p':'Liest, erstellt, benennt um und löscht echte Termine über EventKit. Ziehe zum Verschieben. Dateien oder Text kannst du zum Blocken ablegen.','f6.h3':'Weiß immer, was als Nächstes kommt','f6.p':'Die nächsten 30 freien Minuten stehen direkt in der Kopfzeile.','f7.h3':'Spricht die Sprache deines Macs','f7.p':'Deutsch, Englisch, Französisch, Spanisch, Italienisch und Portugiesisch — automatisch.','f8.h3':'Passt zu deinem Setup','f8.p':'Links oder rechts, auf welchem Display auch immer — du wählst den Bildschirm in den Einstellungen.','f9.h3':'Lokal zuerst, kein Konto','f9.p':'Kalender und Notizen bleiben auf deinem Mac. Keine Analyse, kein Tracking, keine Telemetrie.','compare.h2':'Der Vergleich','compare.sub':'Wo SideSchedule tatsächlich anders ist.','compare.lead':'Die meisten Kalender-Apps zeigen dir deinen Tag und machen dann Platz. SideSchedule bleibt — und verwandelt als einzige App ein Meeting währenddessen in eine Notiz in deinen eigenen Dateien.','cmp.price':'Preis','cmp.reserves':'Reserviert Platz','cmp.notes':'Notizen als Dateien','cmp.join':'Meeting beitreten','compare.note':'Preise und Funktionen laut Angaben der jeweiligen Anbieter, geprüft im September 2026. Vor dem Kauf bitte auf der Website des Herstellers prüfen.','pricing.h2':'Der Preis','pricing.sub':'Kostenlos testen. Einmal zahlen, für immer nutzen.','pricing.trialTier':'Testversion','pricing.trialAmount':'14 Tage kostenlos','pricing.trialP':'Alles freigeschaltet. Kein Konto, keine Kreditkarte und keine Erinnerungsmails.','pricing.trialCta':'Testversion laden','pricing.licenseTier':'Lizenz','pricing.licenseAmount':'12,99 € einmalig','pricing.licenseP':'Einmal zahlen, alle Updates behalten. Keine Abostattdessen.','pricing.merchant':'Lemon Squeezy wickelt die Zahlung als Vertragspartner ab — ohne zusätzliches Konto und ohne überraschende Posten.','how.h2':'So funktioniert es','how.sub':'Immer da, damit du nie zu ihm wechseln musst.','how1.h3':'Es reserviert den Platz','how1.p':'Apple gibt normalen Apps keine Möglichkeit, Bildschirmplatz wie das Dock zu beanspruchen. SideSchedule simuliert das: Fenster, die unter die Leiste rutschen wollen, werden zurückgeschoben.','how1.win':'Hier sind deine Fenster','how1.cap':'Andere Fenster können den Streifen physisch nicht überdecken — der Platz ist reserviert.','how2.h3':'Eine Berechtigung genügt','how2.p':'Bedienungshilfen unter Systemeinstellungen → Datenschutz & Sicherheit. Das ist neben dem Kalenderzugriff die einzige Berechtigung.','how2.cap':'Ein Schalter, einmalig. Keine Hintergrunddienste und keine Kernel-Erweiterungen.','how3.h3':'Notizen werden Dateien','how3.p':'Da die Leiste immer da ist, kannst du direkt während des Gesprächs Notizen schreiben. Jede Notiz wird als eigene .md-Datei gespeichert.','how3.cap':'Reines Markdown mit YAML-Frontmatter — ohne zusätzlichen Code.','install.h2':'Erster Start','install.sub':'Zwei Minuten, kein App Store.','install1.h3':'Laden und nach Programme ziehen','install1.p':'Lade die neueste Version von GitHub. Öffne das Image, ziehe SideSchedule nach Programme — fertig.','install2.h3':'Starten und Zugriff erlauben','install2.p':'Erlaube Kalender- und Bedienungshilfen-Zugriff. Dieser Klick macht die Platzreservierung möglich.','install.note':'Mit einer Developer-ID signiert und von Apple notarisiert — Gatekeeper lässt die App direkt durch.','faq.h2':'Fragen','faq.sub':'Die Fragen, die tatsächlich auftauchen.','faq1.q':'Funktioniert es mit meinem Kalender?','faq1.a':'SideSchedule liest den Apple-Kalender (EventKit). Alles, was Apple Kalender sieht — iCloud, Google, Exchange, CalDAV — erscheint in der Leiste.','faq2.q':'Warum werden Bedienungshilfen benötigt?','faq2.a':'Nur so kann macOS verhindern, dass andere Fenster unter die Leiste rutschen. SideSchedule liest keine Fensterinhalte, sondern positioniert nur Fensterrahmen neu.','faq3.q':'Was passiert nach den 14 Testtagen?','faq3.a':'Die Leiste erscheint nicht mehr; die App öffnet stattdessen das Aktivierungsfenster. Gelöscht wird nichts: Notizen, Einstellungen und exportierte .md-Dateien bleiben unverändert, und die Leiste ist sofort nach Eingabe eines Schlüssels wieder da.','faq4.q':'Werden meine Daten übertragen?','faq4.a':'Nein. Kalender und Notizen bleiben auf deinem Mac. Netzwerkzugriffe gibt es nur für Lizenzprüfung und Updates.','faq5.q':'Kann ich eine Rückerstattung erhalten?','faq5.a':'Lemon Squeezy wickelt die Zahlung ab. Wenn etwas wirklich nicht funktioniert, melde dich — die Testphase ist zum Ausprobieren da.','faq6.q':'Funktioniert es mit mehreren Monitoren?','faq6.a':'Ja. Du wählst den Bildschirm aus; beim Abziehen eines Monitors wechselt die Leiste automatisch zum nächsten.','final.h2':'Dein Kalender gewinnt endlich.','final.sub':'14 Tage kostenlos. Kein Konto, keine Kreditkarte, keine nervigen E-Mails.','footer.privacy':'Datenschutz','footer.legal':'Impressum','footer.releases':'Veröffentlichungen','footer.buy':'Lizenz kaufen'
+    }
+  };
+  translations.fr = translations.en;
+  translations.es = translations.en;
+  translations.it = translations.en;
+  translations.pt = translations.en;
+
+  function renderLanguageMenu() {
+    menu.innerHTML = languages.map(lang => '<button type="button" role="menuitem" data-lang="' + lang.code + '"><span>' + lang.label + '</span><span class="lang-code">' + lang.code.toUpperCase() + '</span></button>').join('');
+  }
+  function setLanguage(code, closeMenu) {
+    const dict = translations[code] || translations.en;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const value = dict[element.dataset.i18n];
+      if (value !== undefined) element.textContent = value;
+    });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+      const value = dict[element.dataset.i18nAriaLabel];
+      if (value !== undefined) element.setAttribute('aria-label', value);
+    });
+    current.textContent = code.toUpperCase();
+    document.documentElement.lang = code;
+    menu.querySelectorAll('button').forEach(button => button.classList.toggle('active', button.dataset.lang === code));
+    try { localStorage.setItem('sideschedule-language', code); } catch (e) {}
+    if (closeMenu) close();
+  }
+  function open() { switcher.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+  function close() { switcher.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  renderLanguageMenu();
+  toggle.addEventListener('click', function(event) { event.stopPropagation(); switcher.classList.contains('open') ? close() : open(); });
+  menu.addEventListener('click', function(event) { const button = event.target.closest('button[data-lang]'); if (button) setLanguage(button.dataset.lang, true); });
+  document.addEventListener('click', function(event) { if (!switcher.contains(event.target)) close(); });
+  document.addEventListener('keydown', function(event) { if (event.key === 'Escape') close(); });
+  let initial = 'en';
+  try { initial = localStorage.getItem('sideschedule-language') || 'en'; } catch (e) {}
+  setLanguage(languages.some(language => language.code === initial) ? initial : 'en', false);
+})();
+
 // FAQ smooth open/close animation
 (function() {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
