@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SideSchedule — A day-calendar sidebar for macOS</title>
-<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it. Free for 14 days, €12.99 once.">
+<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves screen space like the Dock — and writes meeting notes as .md files with frontmatter into your own vault. Free for 14 days, €12.99 once.">
 <link rel="canonical" href="https://4ingoj.github.io/sideschedule-releases/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://4ingoj.github.io/sideschedule-releases/">
 <meta property="og:title" content="SideSchedule — A day-calendar sidebar for macOS">
-<meta property="og:description" content="Reserves a strip of screen the way the Dock does. Free for 14 days, €12.99 once.">
+<meta property="og:description" content="Reserves screen space like the Dock. Writes meeting notes as .md files into your vault. Free for 14 days, €12.99 once.">
 <meta property="og:image" content="https://4ingoj.github.io/sideschedule-releases/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -361,7 +361,7 @@
   "name": "SideSchedule",
   "operatingSystem": "macOS 13+",
   "applicationCategory": "ProductivityApplication",
-  "description": "A macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it.",
+  "description": "A macOS day-calendar sidebar that reserves screen space like the Dock — and writes meeting notes as .md files with frontmatter into your own vault.",
   "url": "https://4ingoj.github.io/sideschedule-releases/",
   "downloadUrl": "https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg",
   "softwareVersion": "0.13.1",
@@ -402,8 +402,8 @@
     <div>
       <span class="eyebrow">macOS 13+ · v0.13.1 · built out of mild spite</span>
     </div>
-    <h1>My calendar kept losing to every other window. Not anymore.</h1>
-    <p class="sub">SideSchedule reserves a strip of screen the way the Dock does, so nothing else is allowed to sit on top of it. Built for the fifteen times a day I need to know what&rsquo;s next without hunting for it.</p>
+    <h1>The calendar that writes your meeting notes into your own vault.</h1>
+    <p class="sub">SideSchedule reserves a strip of screen the way the Dock does — so it&rsquo;s always there to glance at, and always there to type into. Every note becomes a real .md file with frontmatter, right in the folder you chose.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download for macOS</a>
       <a class="btn btn-secondary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
@@ -441,24 +441,24 @@
     </div>
     <div class="feature-grid">
       <div class="card">
+        <h3>Notes that land in your vault</h3>
+        <p>Type through the call, right next to the invite. Every note mirrors itself as a real .md file with YAML frontmatter — Obsidian-ready, no export button needed. Recurring meetings get per-occurrence notes, so last week&rsquo;s standup doesn&rsquo;t overwrite this week&rsquo;s.</p>
+      </div>
+      <div class="card">
         <h3>Claims its corner</h3>
-        <p>Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into.</p>
+        <p>Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top.</p>
       </div>
       <div class="card">
         <h3>Shrinks away, stays useful</h3>
-        <p>Off by default. Turn it on and it shrinks to a sliver when idle — but a live meeting still shows a join button and a countdown right there.</p>
+        <p>Auto-hide collapses it to a thin sliver that still shows a live meeting&rsquo;s join button and countdown. Never gone, always doing something.</p>
       </div>
       <div class="card">
-        <h3>Notes that land in your vault</h3>
-        <p>Type through the call, right next to the invite. Every note can mirror itself as a real .md file with frontmatter — Obsidian-ready, no export button needed.</p>
-      </div>
-      <div class="card">
-        <h3>Today, plus enough of the month to plan around it</h3>
-        <p>Hour-by-hour today, with a small month calendar underneath.</p>
+        <h3>One-tap meeting join</h3>
+        <p>Detects Zoom, Meet, Teams, Webex, and FaceTime links in the location, URL, or notes field. Rewrites to the native app scheme when installed — no browser detour.</p>
       </div>
       <div class="card">
         <h3>It&rsquo;s your actual calendar</h3>
-        <p>Reads, creates, renames, and deletes real events — straight from Apple Calendar.</p>
+        <p>Reads, creates, renames, and deletes real events via EventKit. Drag to reschedule. Drop a file or text selection to time-block. All-day events get their own row.</p>
       </div>
       <div class="card">
         <h3>Always knows what&rsquo;s next</h3>
@@ -470,11 +470,11 @@
       </div>
       <div class="card">
         <h3>Wherever your setup lives</h3>
-        <p>Left or right, whichever display — SideSchedule follows the screen you actually work on.</p>
+        <p>Left or right, whichever display — pick the screen in Preferences. Unplug a monitor and it follows to the next one.</p>
       </div>
       <div class="card">
-        <h3>Drag to block the time</h3>
-        <p>Drag a selection or a file onto the timeline and it becomes a 30-minute event, snapped to the grid, titled from what you dropped.</p>
+        <h3>Local-first, no account</h3>
+        <p>Calendar events and notes stay on your Mac. The only network calls are license validation and update checks. No analytics, no tracking, no telemetry.</p>
       </div>
     </div>
 
@@ -483,7 +483,7 @@
       <p>Where SideSchedule actually differs.</p>
     </div>
     <p style="text-align:center; max-width:640px; margin:-32px auto 40px; color:var(--muted); font-size:16px;">
-      Every app below drops down, shows you something, then gets out of the way again. SideSchedule is the only one that stays — a permanent strip of screen, not a menu.
+      Most calendar apps show you your day, then get out of the way. SideSchedule stays — and it&rsquo;s the only one that turns a meeting into a note in your own files while the meeting is happening.
     </p>
     <div class="table-scroll">
     <table class="compare-table">
@@ -492,7 +492,7 @@
           <th>App</th>
           <th>Price</th>
           <th>Reserves space</th>
-          <th>Meeting notes</th>
+          <th>Notes to your files</th>
           <th>Meeting join</th>
         </tr>
       </thead>
@@ -502,6 +502,20 @@
           <td>€12.99 once</td>
           <td class="check">✓</td>
           <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Sidebar</td>
+          <td>Setapp subscription</td>
+          <td class="check">✓</td>
+          <td class="cross">✕</td>
+          <td class="cross">✕</td>
+        </tr>
+        <tr>
+          <td>Notion Calendar</td>
+          <td>Free</td>
+          <td class="cross">✕</td>
+          <td class="cross">✕</td>
           <td class="check">✓</td>
         </tr>
         <tr>
@@ -535,23 +549,23 @@
       </tbody>
     </table>
     </div>
-    <p class="compare-note">Prices and features as published by each app, checked August 2026. Always confirm on the maker&rsquo;s own site before buying.</p>
+    <p class="compare-note">Prices and features as published by each app, checked September 2026. Always confirm on the maker&rsquo;s own site before buying.</p>
     <div class="compare-sub">
       <div class="card">
-        <h3>No overlay, ever</h3>
-        <p>Every window on your screen physically can&rsquo;t cover it — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top.</p>
+        <h3>Capture without a context switch</h3>
+        <p>Obsidian&rsquo;s Meetings Plus plugin builds pre-filled notes from an ICS feed, but you have to be in Obsidian. Granola does it beautifully and charges a monthly subscription for a cloud round-trip. SideSchedule captures at the screen edge where the meeting is already visible, and writes a plain .md file into the folder you chose.</p>
       </div>
       <div class="card">
-        <h3>Barely there, collapsed</h3>
-        <p>Auto-hide shrinks it to a thin sliver. A live meeting still shows a join button and a countdown right there — never gone, always doing something.</p>
+        <h3>Local plain files, no account</h3>
+        <p>No cloud, no sign-in, no telemetry — the exported note is a file on disk with YAML frontmatter that any vault or ingestion pipeline reads without glue code. A real, checkable claim in a category where almost every competitor is a service.</p>
       </div>
       <div class="card">
-        <h3>Part of the desktop</h3>
-        <p>Not a popup or a dropdown. It lives at the screen edge, the same way the Dock does.</p>
+        <h3>The ambient strip</h3>
+        <p>A 46pt column of bare hour numbers and colored bars, with a live meeting&rsquo;s countdown and join target in it. Sidebar&rsquo;s calendar is a panel you open; this one never closes.</p>
       </div>
       <div class="card">
-        <h3>Always in view</h3>
-        <p>No click needed. The next few hours are just there when you glance over.</p>
+        <h3>Per-occurrence notes</h3>
+        <p>Recurring meetings get their own note per occurrence — last week&rsquo;s standup doesn&rsquo;t overwrite this week&rsquo;s. The note store keys on event identifier plus start time, so each instance is its own document.</p>
       </div>
     </div>
   </div>
@@ -585,11 +599,12 @@
   <div class="wrap">
     <div class="section-head">
       <h2>How it works</h2>
-      <p>It cheats the same way the Dock does.</p>
+      <p>Always there, so you never have to switch to it.</p>
     </div>
     <div class="how">
       <p>Apple never gave regular apps a way to claim screen space like the Dock or the menu bar can. So SideSchedule fakes it: it keeps an eye on whatever window is in front, and the second that window tries to slide under the sidebar, it gets nudged back out. You&rsquo;ll never notice it happening. I mostly don&rsquo;t either, and I wrote the thing.</p>
       <p>That trick needs one permission: <strong>Accessibility</strong>, under System Settings &rarr; Privacy &amp; Security. It&rsquo;s the only thing SideSchedule asks for besides Calendar access, and it&rsquo;s the reason the app can do any of this at all.</p>
+      <p>Because the sidebar is always there, it&rsquo;s the one place you can type meeting notes without ever leaving the call. Every note saves as a standalone .md file with YAML frontmatter — title, date, time, calendar, tags — into a folder you pick. Obsidian, Logseq, or any local AI tool reads it without glue code.</p>
       <div class="how-diagram">
         <span class="how-chip">Dock</span>
         <span class="how-chip">Menu bar</span>
@@ -659,7 +674,7 @@
 <section class="ink" id="cta-final">
   <div class="wrap" style="text-align:center;">
     <h2 style="font-family:var(--sans); font-size:clamp(28px,4.4vw,36px); font-weight:600; letter-spacing:-0.015em; margin-bottom:16px;">
-      Your calendar, finally winning.
+      Your meetings, finally in your vault.
     </h2>
     <p style="color:rgba(250,250,248,.6); font-size:17px; max-width:480px; margin:0 auto 32px;">
       Free for 14 days. No account, no credit card, no guilt-trip emails.
