@@ -6,6 +6,28 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.13.3</title>
+      <pubDate>Fri, 04 Sep 2026 23:39:28 +0200</pubDate>
+      <sparkle:version>17</sparkle:version>
+      <sparkle:shortVersionString>0.13.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.13.3</h3>
+          <ul>
+            <li>"Keep Windows Off Sidebar" now clears the sidebar's area of every window on screen, not just the one belonging to the app you're currently using</li>
+            <li>New preference: choose "All apps" (default) or "Frontmost app only" for the scope above, under Preferences → Behavior</li>
+            <li>Safe against a hung background app — window detection now runs off a bounded, isolated queue, never the sidebar's own UI thread</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.13.3/SideSchedule-0.13.3.zip"
+        sparkle:edSignature="1NKn/Yc7K8O/zYPtdfHI4BQeedqquJJQG8QtlZVca/I5QphLm2PR1oQqXPaaSpTqob4ZHeR5s2JniZEQBCxDAQ=="
+        length="2715869"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.13.2</title>
       <pubDate>Fri, 04 Sep 2026 22:43:28 +0200</pubDate>
       <sparkle:version>16</sparkle:version>
