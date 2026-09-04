@@ -222,6 +222,45 @@
   }
   .how-chip.app { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
+  /* ---------- Inline links ---------- */
+  .step a, .install-note a {
+    color: var(--ink); text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid var(--line);
+    transition: border-color .15s;
+  }
+  .step a:hover, .install-note a:hover { border-color: var(--ink); }
+
+  /* ---------- Brew box (hero) ---------- */
+  .brew-box {
+    max-width: 640px; margin: 32px auto 0;
+    text-align: center;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px 20px;
+    font-size: 14px; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .brew-box code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px; color: var(--ink);
+    background: var(--band); padding: 6px 12px; border-radius: 8px;
+    white-space: nowrap; overflow-x: auto; max-width: 100%;
+  }
+  .brew-copy-btn {
+    background: var(--band); border: 1px solid var(--line); border-radius: 8px;
+    padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--muted);
+    cursor: pointer; transition: background .15s, color .15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .brew-copy-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .brew-copy-btn svg { width: 13px; height: 13px; }
+  .brew-copy-btn .copied-msg { display: none; }
+  .brew-copy-btn.copied .copied-msg { display: inline; }
+  .brew-copy-btn.copied .copy-icon { display: none; }
+  .brew-box .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+  }
+
   /* ---------- Install ---------- */
   .steps { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); max-width: 960px; margin: 0 auto; }
   @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
@@ -240,16 +279,22 @@
     max-width: 960px; margin: 24px auto 0;
     font-size: 14px; color: var(--muted); text-align: center;
   }
-  .brew-note {
-    max-width: 640px; margin: 36px auto 0; text-align: center;
-    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 22px 28px; font-size: 15px; color: var(--muted);
+  /* ---------- FAQ animation ---------- */
+  .faq-item summary::after {
+    content: '+'; font-size: 20px; font-weight: 400; color: var(--muted);
+    transition: transform .25s ease;
   }
-  .brew-note code {
-    display: inline-block; margin-top: 8px;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 14px; color: var(--ink);
-    background: var(--band); padding: 8px 16px; border-radius: 8px;
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item .faq-body {
+    overflow: hidden;
+    transition: height .3s cubic-bezier(.4, 0, .2, 1);
+  }
+  .faq-item .faq-body-inner {
+    padding: 0 24px 20px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item .faq-body { transition: none; }
+    .faq-item summary::after { transition: none; }
   }
 
   /* ---------- Compare ---------- */
@@ -294,15 +339,7 @@
     font-weight: 600; font-size: 16px; letter-spacing: -0.005em;
     list-style: none; display: flex; align-items: center; justify-content: space-between;
   }
-  .faq-item summary::after {
-    content: '+'; font-size: 20px; font-weight: 400; color: var(--muted);
-    transition: transform .2s;
-  }
-  .faq-item[open] summary::after { transform: rotate(45deg); }
   .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item p {
-    padding: 0 24px 20px; font-size: 15px; color: var(--muted);
-  }
 
   /* ---------- Footer ---------- */
   footer { border-top: 1px solid var(--line); padding: 48px 0; }
@@ -353,7 +390,7 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#install">Install</a>
-      <a href="#comparison">Comparison</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/4IngoJ/sideschedule-releases/releases">Changelog</a>
     </div>
   </div>
@@ -372,6 +409,15 @@
       <a class="btn btn-secondary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
     </div>
     <p class="price-note">Free for 14 days, then €12.99 once.</p>
+    <div class="brew-box">
+      <span>Prefer Homebrew?</span>
+      <code id="brew-cmd">brew install --cask 4ingoj/tap/sideschedule</code>
+      <button class="brew-copy-btn" type="button" aria-label="Copy Homebrew command" onclick="copyBrewCmd(this)">
+        <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"/></svg>
+        <span class="copied-msg">Copied</span>
+      </button>
+      <span class="sr-only" aria-live="polite" id="brew-status"></span>
+    </div>
   </div>
 </header>
 
@@ -431,86 +477,8 @@
         <p>Drag a selection or a file onto the timeline and it becomes a 30-minute event, snapped to the grid, titled from what you dropped.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="ink" id="pricing">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>The money bit</h2>
-      <p>Free to try. Cheap to keep, forever.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="tier">Trial</div>
-        <div class="amount">Free for 14 days</div>
-        <p>Everything unlocked. No account, no credit card, and no countdown emails guilt-tripping you into buying.</p>
-        <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download the trial</a>
-      </div>
-      <div class="price-card highlight">
-        <div class="tier">License</div>
-        <div class="amount">€12.99 once</div>
-        <p>Pay once, keep every update after. I won&rsquo;t turn this into a subscription later. That trick is played out anyway.</p>
-        <a class="btn btn-primary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
-      </div>
-    </div>
-    <p class="merchant-note">Lemon Squeezy handles the payment — they&rsquo;re the merchant of record, so there&rsquo;s no extra account and no surprise line item you won&rsquo;t recognise later.</p>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>How it works</h2>
-      <p>It cheats the same way the Dock does.</p>
-    </div>
-    <div class="how">
-      <p>Apple never gave regular apps a way to claim screen space like the Dock or the menu bar can. So SideSchedule fakes it: it keeps an eye on whatever window is in front, and the second that window tries to slide under the sidebar, it gets nudged back out. You&rsquo;ll never notice it happening. I mostly don&rsquo;t either, and I wrote the thing.</p>
-      <p>That trick needs one permission: <strong>Accessibility</strong>, under System Settings &rarr; Privacy &amp; Security. It&rsquo;s the only thing SideSchedule asks for besides Calendar access, and it&rsquo;s the reason the app can do any of this at all.</p>
-      <div class="how-diagram">
-        <span class="how-chip">Dock</span>
-        <span class="how-chip">Menu bar</span>
-        <span class="how-chip app">SideSchedule</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="install">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Install</h2>
-      <p>Three steps. No App Store, no fuss.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <span class="num">01</span>
-        <h3>Download the .dmg</h3>
-        <p>Grab the <a href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">latest release</a> from GitHub. It&rsquo;s the whole app, wrapped up with a shortcut to your Applications folder.</p>
-      </div>
-      <div class="step">
-        <span class="num">02</span>
-        <h3>Open it, drag to Applications</h3>
-        <p>The install you already know: open the disk image, drag SideSchedule into Applications, done.</p>
-      </div>
-      <div class="step">
-        <span class="num">03</span>
-        <h3>Launch and allow access</h3>
-        <p>Say yes when it asks for Calendar and Accessibility access. That one click is what makes the whole reserved-space trick work.</p>
-      </div>
-    </div>
-    <p class="install-note">Signed with a Developer ID and notarized by Apple — Gatekeeper lets it straight through, no right-click dance needed.</p>
-    <div class="brew-note">
-      Prefer Homebrew?
-      <br>
-      <code>brew install --cask 4ingoj/tap/sideschedule</code>
-    </div>
-  </div>
-</section>
-
-<section id="comparison">
-  <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" style="margin-top: 88px;">
       <h2>How it compares</h2>
       <p>Where SideSchedule actually differs.</p>
     </div>
@@ -589,6 +557,70 @@
   </div>
 </section>
 
+<section class="ink" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The money bit</h2>
+      <p>Free to try. Cheap to keep, forever.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="tier">Trial</div>
+        <div class="amount">Free for 14 days</div>
+        <p>Everything unlocked. No account, no credit card, and no countdown emails guilt-tripping you into buying.</p>
+        <a class="btn btn-light" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download the trial</a>
+      </div>
+      <div class="price-card highlight">
+        <div class="tier">License</div>
+        <div class="amount">€12.99 once</div>
+        <p>Pay once, keep every update after. I won&rsquo;t turn this into a subscription later. That trick is played out anyway.</p>
+        <a class="btn btn-primary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
+      </div>
+    </div>
+    <p class="merchant-note">Lemon Squeezy handles the payment — they&rsquo;re the merchant of record, so there&rsquo;s no extra account and no surprise line item you won&rsquo;t recognise later.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it works</h2>
+      <p>It cheats the same way the Dock does.</p>
+    </div>
+    <div class="how">
+      <p>Apple never gave regular apps a way to claim screen space like the Dock or the menu bar can. So SideSchedule fakes it: it keeps an eye on whatever window is in front, and the second that window tries to slide under the sidebar, it gets nudged back out. You&rsquo;ll never notice it happening. I mostly don&rsquo;t either, and I wrote the thing.</p>
+      <p>That trick needs one permission: <strong>Accessibility</strong>, under System Settings &rarr; Privacy &amp; Security. It&rsquo;s the only thing SideSchedule asks for besides Calendar access, and it&rsquo;s the reason the app can do any of this at all.</p>
+      <div class="how-diagram">
+        <span class="how-chip">Dock</span>
+        <span class="how-chip">Menu bar</span>
+        <span class="how-chip app">SideSchedule</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="install">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>First launch</h2>
+      <p>Two minutes, no App Store.</p>
+    </div>
+    <div class="steps" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Download &amp; drag to Applications</h3>
+        <p>Grab the <a href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">latest release</a> from GitHub. Open the disk image, drag SideSchedule into Applications, done.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Launch and allow access</h3>
+        <p>Say yes when it asks for Calendar and Accessibility access. That one click is what makes the whole reserved-space trick work.</p>
+      </div>
+    </div>
+    <p class="install-note">Signed with a Developer ID and notarized by Apple — Gatekeeper lets it straight through, no right-click dance needed.</p>
+  </div>
+</section>
+
 <section class="band" id="faq">
   <div class="wrap">
     <div class="section-head">
@@ -654,5 +686,84 @@
   </div>
 </footer>
 
+<script>
+// FAQ smooth open/close animation
+(function() {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const summary = item.querySelector('summary');
+    const body = item.querySelector('p');
+    if (!body) return;
+    // Wrap answer in animatable container
+    const wrapper = document.createElement('div');
+    wrapper.className = 'faq-body';
+    const inner = document.createElement('div');
+    inner.className = 'faq-body-inner';
+    body.parentNode.insertBefore(wrapper, body);
+    inner.appendChild(body);
+    wrapper.appendChild(inner);
+
+    if (reducedMotion) return; // Skip animation for reduced-motion users
+
+    summary.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (item.open) {
+        // Closing: animate height to 0, then remove open
+        const h = inner.offsetHeight;
+        wrapper.style.height = h + 'px';
+        requestAnimationFrame(() => {
+          wrapper.style.height = '0px';
+        });
+        wrapper.addEventListener('transitionend', function onEnd() {
+          wrapper.removeEventListener('transitionend', onEnd);
+          item.open = false;
+          wrapper.style.height = '';
+        }, { once: true });
+      } else {
+        // Opening: set open, measure, animate from 0
+        item.open = true;
+        const h = inner.offsetHeight;
+        wrapper.style.height = '0px';
+        requestAnimationFrame(() => {
+          wrapper.style.height = h + 'px';
+        });
+        wrapper.addEventListener('transitionend', function onEnd() {
+          wrapper.removeEventListener('transitionend', onEnd);
+          wrapper.style.height = '';
+        }, { once: true });
+      }
+    });
+  });
+})();
+
+// Brew command copy button
+function copyBrewCmd(btn) {
+  const cmd = document.getElementById('brew-cmd').textContent;
+  const status = document.getElementById('brew-status');
+  function showCopied() {
+    btn.classList.add('copied');
+    status.textContent = 'Copied to clipboard';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      status.textContent = '';
+    }, 2000);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(cmd).then(showCopied).catch(() => fallbackCopy());
+  } else {
+    fallbackCopy();
+  }
+  function fallbackCopy() {
+    const ta = document.createElement('textarea');
+    ta.value = cmd;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showCopied(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+}
+</script>
 </body>
 </html>
