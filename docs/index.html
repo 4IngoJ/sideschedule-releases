@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SideSchedule — A day-calendar sidebar for macOS</title>
-<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves screen space like the Dock — and writes meeting notes as .md files with frontmatter into your own vault. Free for 14 days, €12.99 once.">
+<meta name="description" content="SideSchedule is a macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it. Free for 14 days, €12.99 once.">
 <link rel="canonical" href="https://4ingoj.github.io/sideschedule-releases/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://4ingoj.github.io/sideschedule-releases/">
 <meta property="og:title" content="SideSchedule — A day-calendar sidebar for macOS">
-<meta property="og:description" content="Reserves screen space like the Dock. Writes meeting notes as .md files into your vault. Free for 14 days, €12.99 once.">
+<meta property="og:description" content="Reserves a strip of screen the way the Dock does. Free for 14 days, €12.99 once.">
 <meta property="og:image" content="https://4ingoj.github.io/sideschedule-releases/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -182,6 +182,13 @@
   .card:hover { box-shadow: 0 10px 32px rgba(20,20,19,.08); transform: translateY(-2px); }
   .card h3 { font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; }
   .card p { font-size: 15px; color: var(--muted); }
+  .card-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--band); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .card-icon svg { width: 17px; height: 17px; }
 
   /* ---------- Pricing ---------- */
   .pricing-grid {
@@ -324,8 +331,6 @@
   .check { color: var(--ink); font-weight: 700; }
   .cross { color: #C9C6BF; }
   .compare-note { text-align: center; font-size: 13px; color: var(--muted); margin-top: 20px; }
-  .compare-sub { max-width: 780px; margin: 56px auto 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 700px) { .compare-sub { grid-template-columns: 1fr; } }
 
   /* ---------- FAQ ---------- */
   .faq-list { max-width: 720px; margin: 0 auto; }
@@ -361,7 +366,7 @@
   "name": "SideSchedule",
   "operatingSystem": "macOS 13+",
   "applicationCategory": "ProductivityApplication",
-  "description": "A macOS day-calendar sidebar that reserves screen space like the Dock — and writes meeting notes as .md files with frontmatter into your own vault.",
+  "description": "A macOS day-calendar sidebar that reserves a strip of screen the way the Dock does — so nothing else sits on top of it.",
   "url": "https://4ingoj.github.io/sideschedule-releases/",
   "downloadUrl": "https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg",
   "softwareVersion": "0.13.1",
@@ -402,8 +407,8 @@
     <div>
       <span class="eyebrow">macOS 13+ · v0.13.1 · built out of mild spite</span>
     </div>
-    <h1>The calendar that writes your meeting notes into your own vault.</h1>
-    <p class="sub">SideSchedule reserves a strip of screen the way the Dock does — so it&rsquo;s always there to glance at, and always there to type into. Every note becomes a real .md file with frontmatter, right in the folder you chose.</p>
+    <h1>My calendar kept losing to every other window. Not anymore.</h1>
+    <p class="sub">SideSchedule reserves a strip of screen the way the Dock does, so nothing else is allowed to sit on top of it. Built for the fifteen times a day I need to know what&rsquo;s next without hunting for it.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/SideSchedule.dmg">Download for macOS</a>
       <a class="btn btn-secondary" href="https://4ingoj.lemonsqueezy.com/checkout/buy/e72e0987-c650-42d1-a936-908168e003f5">Buy license — €12.99</a>
@@ -441,38 +446,47 @@
     </div>
     <div class="feature-grid">
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></div>
         <h3>Notes that land in your vault</h3>
-        <p>Type through the call, right next to the invite. Every note mirrors itself as a real .md file with YAML frontmatter — Obsidian-ready, no export button needed. Recurring meetings get per-occurrence notes, so last week&rsquo;s standup doesn&rsquo;t overwrite this week&rsquo;s.</p>
+        <p>Type through the call, right next to the invite. Every note mirrors itself as a real .md file with YAML frontmatter — Obsidian-ready. Recurring meetings get per-occurrence notes, so last week&rsquo;s standup never overwrites this week&rsquo;s.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M19 4v16"/><path d="M19 12H3"/></svg></div>
         <h3>Claims its corner</h3>
-        <p>Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top.</p>
+        <p>Every window your front app has open gets pushed out of its lane — not just the one you&rsquo;re clicking into. The space is reserved, not floated on top. Part of the desktop, same as the Dock.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/><circle cx="18.5" cy="9" r=".5" fill="currentColor"/></svg></div>
         <h3>Shrinks away, stays useful</h3>
-        <p>Auto-hide collapses it to a thin sliver that still shows a live meeting&rsquo;s join button and countdown. Never gone, always doing something.</p>
+        <p>Auto-hide collapses it to a thin sliver that still shows a live meeting&rsquo;s join button and countdown. Never gone, always doing something — always in view without a click.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
         <h3>One-tap meeting join</h3>
         <p>Detects Zoom, Meet, Teams, Webex, and FaceTime links in the location, URL, or notes field. Rewrites to the native app scheme when installed — no browser detour.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
         <h3>It&rsquo;s your actual calendar</h3>
         <p>Reads, creates, renames, and deletes real events via EventKit. Drag to reschedule. Drop a file or text selection to time-block. All-day events get their own row.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h3>Always knows what&rsquo;s next</h3>
         <p>Next free 30 minutes: 14:30 — right in the header, so you don&rsquo;t have to scan the day to find a gap.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <h3>Speaks your Mac&rsquo;s language</h3>
         <p>German, English, French, Spanish, Italian, Portuguese, automatically.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
         <h3>Wherever your setup lives</h3>
         <p>Left or right, whichever display — pick the screen in Preferences. Unplug a monitor and it follows to the next one.</p>
       </div>
       <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>Local-first, no account</h3>
         <p>Calendar events and notes stay on your Mac. The only network calls are license validation and update checks. No analytics, no tracking, no telemetry.</p>
       </div>
@@ -550,24 +564,6 @@
     </table>
     </div>
     <p class="compare-note">Prices and features as published by each app, checked September 2026. Always confirm on the maker&rsquo;s own site before buying.</p>
-    <div class="compare-sub">
-      <div class="card">
-        <h3>Capture without a context switch</h3>
-        <p>Obsidian&rsquo;s Meetings Plus plugin builds pre-filled notes from an ICS feed, but you have to be in Obsidian. Granola does it beautifully and charges a monthly subscription for a cloud round-trip. SideSchedule captures at the screen edge where the meeting is already visible, and writes a plain .md file into the folder you chose.</p>
-      </div>
-      <div class="card">
-        <h3>Local plain files, no account</h3>
-        <p>No cloud, no sign-in, no telemetry — the exported note is a file on disk with YAML frontmatter that any vault or ingestion pipeline reads without glue code. A real, checkable claim in a category where almost every competitor is a service.</p>
-      </div>
-      <div class="card">
-        <h3>The ambient strip</h3>
-        <p>A 46pt column of bare hour numbers and colored bars, with a live meeting&rsquo;s countdown and join target in it. Sidebar&rsquo;s calendar is a panel you open; this one never closes.</p>
-      </div>
-      <div class="card">
-        <h3>Per-occurrence notes</h3>
-        <p>Recurring meetings get their own note per occurrence — last week&rsquo;s standup doesn&rsquo;t overwrite this week&rsquo;s. The note store keys on event identifier plus start time, so each instance is its own document.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -674,7 +670,7 @@
 <section class="ink" id="cta-final">
   <div class="wrap" style="text-align:center;">
     <h2 style="font-family:var(--sans); font-size:clamp(28px,4.4vw,36px); font-weight:600; letter-spacing:-0.015em; margin-bottom:16px;">
-      Your meetings, finally in your vault.
+      Your calendar, finally winning.
     </h2>
     <p style="color:rgba(250,250,248,.6); font-size:17px; max-width:480px; margin:0 auto 32px;">
       Free for 14 days. No account, no credit card, no guilt-trip emails.
