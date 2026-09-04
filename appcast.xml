@@ -4,7 +4,7 @@
     <title>Sideschedule</title>
     <link>https://github.com/4IngoJ/sideschedule-releases/releases/latest/download/appcast.xml</link>
     <description>Update feed for Sideschedule.</description>
-    <language>de</language>
+    <language>en</language>
     <item>
       <title>Version 0.12.0</title>
       <pubDate>Fri, 04 Sep 2026 08:56:02 +0200</pubDate>
@@ -15,15 +15,15 @@
         <![CDATA[
           <h3>0.12.0</h3>
           <ul>
-            <li>Live-Markdown-Editor für Termin-Notizen, automatisches Speichern</li>
-            <li>Notizen als Markdown-Datei in einen selbst gewählten Ordner exportieren</li>
-            <li>Onboarding-Flow und "Bei Anmeldung starten"-Option für neue Nutzer</li>
-            <li>Sprung zur aktuellen Uhrzeit in der Timeline</li>
-            <li>"Nächster freier Slot" direkt im Header sichtbar</li>
-            <li>Beitreten-Ziel für laufende Meetings jetzt auch in der eingeklappten Leiste, Termine per Drag direkt auf einen Zeitblock legen</li>
-            <li>Fenster der aktiven App werden jetzt an allen Rändern korrekt vom Sidebar-Bereich freigehalten, nicht nur am zugewiesenen Rand</li>
-            <li>Termine lassen sich umbenennen und löschen</li>
-            <li>App-Downloads sind jetzt von Apple notarisiert — keine Gatekeeper-Warnung mehr beim ersten Öffnen</li>
+            <li>Live Markdown editor for event notes, saves automatically</li>
+            <li>Export notes as a Markdown file to a folder of your choice</li>
+            <li>Onboarding flow and a "Launch at Login" option for new users</li>
+            <li>Jump to the current time in the timeline</li>
+            <li>"Next free slot" visible right in the header</li>
+            <li>Join target for live meetings now also in the collapsed strip; drag an event straight onto a time block</li>
+            <li>The frontmost app's windows are now correctly kept clear of the sidebar area on every edge, not just the assigned one</li>
+            <li>Events can now be renamed and deleted</li>
+            <li>App downloads are now notarized by Apple — no more Gatekeeper warning on first launch</li>
           </ul>
         ]]>
       </description>
@@ -43,12 +43,12 @@
         <![CDATA[
           <h3>0.11.0</h3>
           <ul>
-            <li>Beitreten-Icon direkt im Terminblock der Timeline — kein Popover mehr nötig, bei laufenden Terminen farblich hervorgehoben</li>
-            <li>Notizen zu jedem Termin, unabhängig von Uhrzeit oder erkanntem Meeting-Link, direkt in der Termin-Detailansicht</li>
-            <li>Neuer Notiz-Modus: Klick auf das Notiz-Icon (oder ⌥-Klick auf den Terminblock) verwandelt die ausgeklappte Sidebar in eine volle Notizansicht, die vom Bildschirmrand hereingleitet</li>
-            <li>Notizen werden automatisch gespeichert, ohne Speichern-Button</li>
-            <li>Zentrale, durchsuchbare Notizübersicht in den Einstellungen</li>
-            <li>Optional: Notizen zusätzlich in die Terminbeschreibung im Apple Kalender schreiben (standardmäßig aus)</li>
+            <li>Join icon right on the timeline's event block — no popover needed, highlighted in color for events in progress</li>
+            <li>Notes on any event, regardless of time or a detected meeting link, right in the event detail view</li>
+            <li>New notes mode: clicking the notes icon (or ⌥-clicking the event block) turns the expanded sidebar into a full notes view that slides in from the screen edge</li>
+            <li>Notes save automatically, no Save button needed</li>
+            <li>A central, searchable notes overview in Preferences</li>
+            <li>Optional: also write notes into the event description in Apple Calendar (off by default)</li>
           </ul>
         ]]>
       </description>
@@ -68,15 +68,15 @@
         <![CDATA[
           <h3>0.10.0</h3>
           <ul>
-            <li>Meeting-Links werden erkannt — ein Klick auf "Beitreten" öffnet Zoom/Meet/Teams/Webex/FaceTime direkt</li>
-            <li>Termine per Drag &amp; Drop verschieben (15-Minuten-Raster, live Zeitanzeige beim Ziehen)</li>
-            <li>Termin-Detailansicht zeigt jetzt Organisator, Teilnehmer mit Zusage-Status und "In Kalender öffnen"</li>
-            <li>"Neuer Termin"-Dialog überarbeitet</li>
-            <li>Einstellungen komplett neu strukturiert: Seitenleiste mit Kategorien statt einer langen Liste, Kalender nach Account gruppiert</li>
-            <li>Neue Option: Sidebar bei Screenshots und Bildschirmaufnahmen ausblenden</li>
-            <li>Diagnosebericht per Mail senden (Menüleiste und Einstellungen)</li>
-            <li>Neues App-Icon</li>
-            <li>Diverse Fehlerbehebungen, u. a. am "Fenster von Sidebar freihalten"</li>
+            <li>Meeting links are now detected — one click on "Join" opens Zoom/Meet/Teams/Webex/FaceTime directly</li>
+            <li>Reschedule events by drag and drop (15-minute grid, live time readout while dragging)</li>
+            <li>The event detail view now shows the organizer, attendees with RSVP status, and an "Open in Calendar" action</li>
+            <li>Reworked the "New Event" dialog</li>
+            <li>Preferences fully restructured: a sidebar with categories instead of one long list, calendars grouped by account</li>
+            <li>New option: hide the sidebar from screenshots and screen recordings</li>
+            <li>Send a diagnostics report by email (menu bar and Preferences)</li>
+            <li>New app icon</li>
+            <li>Various bug fixes, including to "Keep Windows Off Sidebar"</li>
           </ul>
         ]]>
       </description>
@@ -96,9 +96,9 @@
         <![CDATA[
           <h3>0.9.1</h3>
           <ul>
-            <li>Testphase (14 Tage) und Lizenzierung über Lemon Squeezy</li>
-            <li>Eigenes App-Icon</li>
-            <li>DMG-Download für die manuelle Erstinstallation</li>
+            <li>14-day trial and licensing via Lemon Squeezy</li>
+            <li>Custom app icon</li>
+            <li>DMG download for manual first-time installation</li>
           </ul>
         ]]>
       </description>
@@ -118,9 +118,9 @@
         <![CDATA[
           <h3>0.9.0</h3>
           <ul>
-            <li>Erster öffentlicher Preview-Build</li>
-            <li>Tageskalender-Sidebar mit Ein-/Ausklapp-Handle</li>
-            <li>Auto-Updates über Sparkle</li>
+            <li>First public preview build</li>
+            <li>Day-calendar sidebar with an expand/collapse handle</li>
+            <li>Auto-updates via Sparkle</li>
           </ul>
         ]]>
       </description>
