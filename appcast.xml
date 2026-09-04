@@ -6,6 +6,28 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.13.1</title>
+      <pubDate>Fri, 04 Sep 2026 13:53:26 +0200</pubDate>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.13.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.13.1</h3>
+          <ul>
+            <li>Fixed: onboarding's "Get Started" button, and Preferences → Calendars' "Allow Access" button, could take a click or two to respond (or seem to do nothing) on a window that wasn't already active</li>
+            <li>Onboarding now has its own "Allow Access" button for Calendar and for Accessibility, each showing "Access granted" once done — instead of just explaining what's about to be requested later</li>
+            <li>The header now shows "No more events today" instead of a same-as-now "Next free" time once nothing is left on the calendar for the rest of the day</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.13.1/SideSchedule-0.13.1.zip"
+        sparkle:edSignature="fCq+UW6NwzneubFy9CNUOfDSAe1fijjkhieDz3QpGWmAlcLl3qhk3DGa4ZUvzyTh/Ep8UDm0PK/NCojeApWmDQ=="
+        length="2683400"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.13.0</title>
       <pubDate>Fri, 04 Sep 2026 10:12:38 +0200</pubDate>
       <sparkle:version>14</sparkle:version>
