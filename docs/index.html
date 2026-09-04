@@ -498,7 +498,7 @@
 <nav>
   <div class="wrap">
     <a class="wordmark" href="#top">
-      <img src="assets/app-icon.png" alt="SideSchedule app icon">
+      <img src="assets/app-icon.png" alt="SideSchedule app icon" width="28" height="28">
       SideSchedule
     </a>
     <div class="nav-links">
@@ -521,7 +521,7 @@
 
 <header class="hero" id="top">
   <div class="wrap">
-    <img class="icon" src="assets/app-icon.png" alt="SideSchedule app icon">
+    <img class="icon" src="assets/app-icon.png" alt="SideSchedule app icon" width="84" height="84">
     <div>
       <span class="eyebrow" data-i18n="hero.eyebrow">macOS 13+ · v0.13.3</span>
     </div>
@@ -551,7 +551,7 @@
       <p data-i18n="demo.sub">Faster to watch than to read about.</p>
     </div>
     <div class="video-frame reveal">
-      <video src="assets/demo-web.mp4" poster="assets/demo-poster.png" autoplay muted loop playsinline controls aria-label="SideSchedule sidebar showing a real day of calendar events"></video>
+      <video data-src="assets/demo-web.mp4" poster="assets/demo-poster.jpg" width="1280" height="720" preload="none" muted loop playsinline controls aria-label="SideSchedule sidebar showing a real day of calendar events"></video>
     </div>
   </div>
 </section>
@@ -860,7 +860,7 @@ Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
 <footer>
   <div class="wrap">
     <div class="brand">
-      <img src="assets/app-icon.png" alt="">
+      <img src="assets/app-icon.png" alt="" width="24" height="24">
       SideSchedule <span class="ver">v0.13.3</span>
     </div>
     <div class="links">
@@ -888,16 +888,43 @@ Typed during the call. Read by Obsidian, Logseq, or any local AI tool.</pre>
     }
   });
 
+  // Swap in the demo video's real source only once its block is about to be seen,
+  // so the 2.5MB file isn't fetched on page load.
+  function loadDeferredVideo(item) {
+    const video = item.matches('video') ? item : item.querySelector('video[data-src]');
+    if (!video || !video.dataset.src) return;
+    video.src = video.dataset.src;
+    delete video.dataset.src;
+    video.load();
+    video.play().catch(() => {});
+  }
+
+  // will-change keeps a compositor layer alive; drop it once the one-time
+  // reveal transition has actually finished instead of leaving it forever.
+  function clearWillChangeAfterTransition(item) {
+    item.addEventListener('transitionend', function onEnd(e) {
+      if (e.target !== item) return;
+      item.removeEventListener('transitionend', onEnd);
+      item.style.willChange = 'auto';
+    });
+  }
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(item => item.classList.add('revealed'));
+    document.querySelectorAll('.reveal').forEach(item => {
+      item.classList.add('revealed');
+      item.style.willChange = 'auto';
+      loadDeferredVideo(item);
+    });
     return;
   }
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        clearWillChangeAfterTransition(entry.target);
         entry.target.classList.add('revealed');
+        loadDeferredVideo(entry.target);
         observer.unobserve(entry.target);
       }
     });
