@@ -6,6 +6,32 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.13.0</title>
+      <pubDate>Fri, 04 Sep 2026 10:12:38 +0200</pubDate>
+      <sparkle:version>14</sparkle:version>
+      <sparkle:shortVersionString>0.13.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.13.0</h3>
+          <ul>
+            <li>Fixed: entering a license key (or a trial user just opening the license window) could leave the sidebar hidden until relaunch</li>
+            <li>Fixed: "Keep Windows Off Sidebar" could show a checkmark before Accessibility permission was actually granted</li>
+            <li>Fixed: a window that refuses to resize no longer gets fought over five times a second</li>
+            <li>Fixed: changing sidebar side or width in Preferences now applies immediately, even while collapsed</li>
+            <li>Fixed: fullscreen and other-Space windows are no longer clamped against the sidebar</li>
+            <li>Fixed two rare crashes: an empty-layout timing window in the timeline, and a first-launch preferences bug</li>
+            <li>New: pick a default calendar for new events and dropped time blocks (Preferences → Calendars)</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.13.0/SideSchedule-0.13.0.zip"
+        sparkle:edSignature="ZIB1ADQcnb8XhpBdiFIqJRrwq5PIZfT7aobTLCDnCdCr3wlgghK8J8+JTgk6vDTpcBCzlxdJ4PWnN3y/gh1SAw=="
+        length="2669541"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.12.0</title>
       <pubDate>Fri, 04 Sep 2026 08:56:02 +0200</pubDate>
       <sparkle:version>13</sparkle:version>
