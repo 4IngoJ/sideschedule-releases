@@ -6,6 +6,31 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.13.4</title>
+      <pubDate>Sun, 06 Sep 2026 23:11:48 +0200</pubDate>
+      <sparkle:version>18</sparkle:version>
+      <sparkle:shortVersionString>0.13.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.13.4</h3>
+          <ul>
+            <li>Fixed: calendar access could not be granted at all on macOS 15 and later &mdash; the permission prompt never appeared, and "Allow Access" did nothing however often you pressed it</li>
+            <li>Fixed: onboarding's "Get Started" button did nothing, and onboarding reappeared on every launch</li>
+            <li>Fixed: quitting while the welcome window was open counted as having finished onboarding, so it never came back</li>
+            <li>Fixed: the sidebar showed an empty hour grid when it had no calendar access, with no hint that a permission was missing &mdash; it now says so and offers the button that fixes it</li>
+            <li>"Deactivate this Mac" now asks first, and releases the activation so the same license can be used on a replacement Mac</li>
+            <li>Diagnostics reports include the calendar authorization status</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.13.4/SideSchedule-0.13.4.zip"
+        sparkle:edSignature="6SiVGMYbM/k3IUlgxX4AjnTWJPabNL5j2NIlEMQ6G++DvaJvtw62hFhOpg7u4BOcJuZBp090iNyvx9/G+WTeBg=="
+        length="2738778"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.13.3</title>
       <pubDate>Fri, 04 Sep 2026 23:39:28 +0200</pubDate>
       <sparkle:version>17</sparkle:version>
