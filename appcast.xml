@@ -6,6 +6,35 @@
     <description>Update feed for Sideschedule.</description>
     <language>en</language>
     <item>
+      <title>Version 0.14.0</title>
+      <pubDate>Mon, 07 Sep 2026 19:02:15 +0200</pubDate>
+      <sparkle:version>24</sparkle:version>
+      <sparkle:shortVersionString>0.14.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description>
+        <![CDATA[
+          <h3>0.14.0</h3>
+          <ul>
+            <li>The sidebar steps aside for full-screen apps instead of covering them, and comes back when you leave. There's an opt-in under Preferences &rarr; Behavior if you'd rather keep it floating there.</li>
+            <li>The collapsed strip is kept properly clear now &mdash; a sliver of it was always left overlapped &mdash; and windows that ignore a first nudge are retried instead of being given up on</li>
+            <li>The collapsed strip uses a proper macOS material, so the hour numbers stay readable over any wallpaper</li>
+            <li>Half-hour ticks between the hours, and the hour number size is adjustable</li>
+            <li>New slider for the clearance beside the collapsed strip &mdash; the gap between the now-dot and the window next to it</li>
+            <li>A lone event is drawn slimmer; the join button is gone from the collapsed strip, where a small dot now marks a meeting link (joining lives in the popover)</li>
+            <li>Clicking an event in the collapsed strip opens its popover in front of other windows</li>
+            <li>Fixed: the day now rolls over at midnight instead of still showing yesterday the next morning</li>
+            <li>Fixed: auto-hide no longer shrinks the sidebar while it is off screen, which could bring it back as a sliver</li>
+            <li>The Preferences window no longer resizes</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure
+        url="https://github.com/4IngoJ/sideschedule-releases/releases/download/v0.14.0/SideSchedule-0.14.0.zip"
+        sparkle:edSignature="HFuU1kc9NoY4FWgyVq8Qbxpsn+OYsDoovV6hcaoIDB7YmK/f672IpPRePkkXOFRdlmNvrZqiBQjWzThqfD17Cw=="
+        length="2799742"
+        type="application/octet-stream" />
+    </item>
+    <item>
       <title>Version 0.13.5</title>
       <pubDate>Mon, 07 Sep 2026 09:35:46 +0200</pubDate>
       <sparkle:version>19</sparkle:version>
